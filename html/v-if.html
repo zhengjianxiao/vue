@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="div1">
+    <span v-if="isshow">
+      <label for="user" >user</label>
+      <input id="user" type="text" placeholder="user" key="user">
+    </span>
+    <span v-else>
+      <label for="user">email</label>
+      <input id="user" type="text" placeholder="email" key="email">
+    </span>
+    <button @click="toggle">tijao</button>
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el: "#div1",
+    data: {
+      isshow: true
+    },
+    methods: {
+      toggle(){
+        this.isshow = !this.isshow;
+      }
+    }
+  })
+</script>
+
+</html>

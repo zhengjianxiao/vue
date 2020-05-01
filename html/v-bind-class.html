@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active{
+      color: blue;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <h2 v-bind:class="{'active': isActive}">{{message}}</h2>
+    <button v-on:click="toggle">切换</button>
+    a
+
+    <h2 v-bind:class="getclass()">{{message}}</h2>
+    <button v-on:click="toggle">切换</button>
+  </div>
+  
+</body>
+<script>
+  let app = new Vue({
+    el: '#div1',
+    data: {
+      message: "Hello",
+      isActive: true 
+    },
+    methods: {
+      toggle: function () {
+        this.isActive = !this.isActive;
+      }
+      // toggle:()=>{
+      //   app.isActive = !app.isActive;
+      // }
+      ,
+      getclass: function(){
+        return {'active': this.isActive};
+      }
+    }
+  })
+</script>
+
+</html>

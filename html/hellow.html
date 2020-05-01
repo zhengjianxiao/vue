@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div class="div1">{{message}}</div>
+    <div id="div2">{{message}}</div>
+    <ul>
+        <li v-for="item in moves">{{item}}</li>
+    </ul>
+    <div class="div3">
+        计数：{{content}}
+        <button v-on:click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+</body>
+<script>
+    let app = new Vue({
+        el: ".div1",
+        data: {
+            message: "hellow vue"
+        }
+    })
+    let lis = new Vue({
+        el: "ul",
+        data: {
+            moves: ["aa", "bb", "cc"]
+        }
+    })
+    let count = new Vue({
+        el: ".div3",
+        data: {
+            content: 0
+        },
+        methods: {
+            add() {
+                this.content++;
+                alert("s");
+            },
+            sub() {
+                this.content--;
+                alert("b");
+            }
+        }
+    })
+</script>
+
+</html>

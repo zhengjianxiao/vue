@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="div1">
+    <img v-bind:src="url" alt="">
+    <a v-bind:href="ahref">{{message}}</a>
+    <div>
+      ---------------------------------------------------
+    </div>
+    <img :src="url" alt="">
+    <a :href="ahref">{{message}}</a>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#div1',
+    data: {
+      message: "百度一下",
+      ahref: "https://www.baidu.com",
+      url: "https://pics1.baidu.com/feed/ac345982b2b7d0a2f45be34dc4a0e10f4a369a22.jpeg?token=9fc61a935b8e88adffb09503355c18c3"
+    }
+  })
+</script>
+
+</html>

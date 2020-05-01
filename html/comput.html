@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div class="div1">
+    <h2>{{fullname}}</h2>
+    <h2>{{totalprice}}</h2>
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el: '.div1',
+    computed: {
+      fullname: function() {
+        return this.fitstname + ' ' + this.lastname;
+      },
+      totalprice: function() {
+        let relus = 0;
+
+        // for( let i = 0; i < this.books.length; i++ ) {
+        //   relus += this.books[i].price;
+        // }
+
+        // for( let i in this.books){
+        //   relus += this.books[i].price;
+        // }
+
+        for(let item of this.books){
+          relus += item.price;
+        }
+
+        return relus;
+
+      //  return this.books.reduce(function(prev, cur ){
+      //    return prev.price ;
+      //   })
+    },
+    },
+    data: {
+      fitstname: "John",
+      lastname: "Doe",
+      books: [
+        {"id":1 , "price": 101},
+        {id:2 , price: 100},
+        {id:3 , price: 100},
+        {id:3 , price: 100},
+        {id:5 , price: 100},
+      ],
+      num:[1,2,3,4]
+    }
+  })
+</script>
+</html>

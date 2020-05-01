@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="div1" v-cloak>
+    <h2>{{message + " " + name}} nihao</h2>
+    <h2 v-once>{{message + " " + name}} nihao</h2>
+    <h2 v-html="url"></h2>
+    <h2 v-pre>{{message + " " + name}} nihao</h2>
+    <h2 >{{message + " " + name}} nihao</h2>
+  </div>
+</body>
+<script>
+  setTimeout(() =>{
+ let app = new Vue({
+    el: '#div1',
+    data: {
+      message: 'nihao',
+      name: "my",
+      url:'<a href="http://www.baidu.com">baidu</a>'
+    }
+  })
+  },2000)
+ 
+</script>
+</html>

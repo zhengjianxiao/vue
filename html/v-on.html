@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div class="div1" @click="div1()">
+    <button v-on:click.stop="btn1()">btn1</button>
+    <a href="https://aaa.com" @click.prevent.stop="btn1">assa</a>
+    <form action="https://www.baidu.com">
+      <input type="submit" value="tijao"  @click.prevent="submit">
+    </form>
+    <button @click.once="submit()">assa</button>
+    <input type="text" @keyup.enter="submit">
+    <input type="text" @keyup.13="submit">
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el: '.div1',
+    data:{
+      me:"as"
+    },
+    methods: {
+      btn1(){
+        console.log("btn1");
+      },
+      div1(){
+        console.log("div1");
+      },
+      submit(){
+        alert("submit");
+      }
+    }
+  })
+</script>
+</html>

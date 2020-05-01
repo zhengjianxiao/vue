@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .isred{
+      color: red;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <ul>
+      <li v-for="(item , index) in moves" :class="getclass(index)" @click="togglecolor(index)" :style="getstyle()">{{item}}</li>
+    </ul>
+  </div>
+</body>
+<script>
+  const lis = new Vue({
+    el: "#div1",
+    data: {
+      moves: ["aa" , "bb" , "cc" , "dd"],
+      isred: true,
+      idx: 0,
+      finfont: "100"
+    },
+    methods:{
+      getclass: function(index) {
+        return this.idx == index ? {'isred' : true} : {'isred' : false};
+      },
+      togglecolor: function(index) {
+        this.idx = index;
+        console.log(this.idx);
+      },
+      getstyle: function() {
+        return {'fontSize': this.finfont + 'px'};
+      }
+    }
+  })
+</script>
+</html>
