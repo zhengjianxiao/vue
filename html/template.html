@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+  </div>
+</body>
+<template id="tem1">
+  <div>
+    <h2>title</h2>
+    <p>titleassssdadf</p>
+  </div>
+</template>
+<script>
+
+  Vue.component("cpn2" , {
+    template: "#tem1"
+  });
+  
+  const app = new Vue({
+    el: '#div1',
+    components: {
+      cpn1: {
+        template: "#tem1"
+      }
+    }
+  })
+</script>
+</html>

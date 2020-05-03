@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <myfirstcpn></myfirstcpn>
+    <mysecondcpn></mysecondcpn>
+  </div>
+</body>
+<script>
+
+  const cpn = Vue.extend({
+    template: `
+    <div>
+      <h2>title</h2>
+      <p>content content content content</p>
+      <p>content content content content</p>
+    </div>
+    `
+  });
+
+  Vue.component('myfirstcpn' , cpn)
+
+  const app = new Vue({
+    el: '#div1',
+    components: {
+      mysecondcpn: cpn
+    }
+  });
+</script>
+</html>

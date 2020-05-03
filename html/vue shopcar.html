@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    table{
+      margin: 0px auto;
+      border-collapse: collapse;
+      width: 500px;
+      
+    }
+    th{
+      border: 1px solid #ccc;
+    }
+    td{
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="shopcar">
+    <div v-if="books.length">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in books" >
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.price | showprice}}</td>
+            <td>
+              <button v-on:click="subcount(index)" v-bind:disabled="item.count <= 1">-</button>
+              {{item.count}}
+              <button @click="addcount(index)">+</button>
+            </td>
+            <td><button @click="removebook(index)">移除</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>总价格：{{totalprice | showprice}}</h2>
+    </div>
+    <h2 v-else>购物车为空</h2>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#shopcar',
+      data: {
+        kon: true,
+        books: [{
+            id: '1',
+            name: 'John',
+            date: '2015-2',
+            price: 100.00,
+            count: 1
+          },
+          {
+            id: '2',
+            name: 'mary',
+            date: '2013-2',
+            price: 75.00,
+            count: 1
+          },
+          {
+            id: '3',
+            name: 'linda',
+            date: '2018-4',
+            price: 170.00,
+            count: 1
+          },
+          {
+            id: '4',
+            name: 'janm',
+            date: '2011-2',
+            price: 84.00,
+            count: 1
+          },
+          {
+            id: '5',
+            name: 'xiao',
+            date: '2009-2',
+            price: 103.00,
+            count: 1
+          }
+        ]
+      },
+      methods: {
+        addcount(index){
+          this.books[index].count ++;
+        },
+        subcount(index){
+          this.books[index].count --;
+        },
+        removebook(index){
+    
+           return this.books.splice(index, 1)
+        }
+
+      },
+      computed: {
+        totalprice(){
+          // let totalprice = 0;
+          // for(let i = 0; i < this.books.length; i++){
+          //   totalprice += this.books[i].price * this.books[i].count
+          // }
+          // return totalprice;
+          let result = this.books.reduce(function(prev, cur){
+            // return prev.price + cur.price * cur.count;  prev后面不能加对象的属性，只能写一个prev
+            return prev + cur.price * cur.count;
+          },0)
+          return result;
+        }
+      },
+      filters: {
+        showprice(price){
+          return "￥" + price.toFixed(2) 
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

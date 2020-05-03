@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <p >count: {{count}}</p>
+    <cpn @myclick="sonclick" @declick="downcount()" @inclick="upcount()" ></cpn>
+  </div>
+</body>
+<template id=son>
+  <div>
+    <button @click="incream">+</button>
+    <button @click="decream">-</button>
+    <br>
+    <button v-for="item in generated" @click="btnClick">{{item.name}}</button>
+  </div>
+</template>
+<script>
+  const cpn = {
+    template: '#son',
+    data(){
+      return{
+      generated: [
+        {id:"aaa" , name:"Test"},
+        {id:"bbb" , name:"last"},
+        {id:"ccc" , name:"after"}
+      ]
+    }
+    },
+    methods: {
+      btnClick(item){
+        this.$emit("myclick" , item)
+      },
+      incream(){
+        this.$emit("inclick")
+      },
+      decream(){
+        this.$emit("declick")
+      }
+    }
+  }
+  const app = new Vue({
+    el: '#div1',
+    data: {
+      count: 1
+    },
+    components: {
+      cpn
+    },
+    methods:{
+      sonclick(item){
+        alert(item);
+      },
+      upcount(){
+        alert("as");
+        this.count++
+      },
+      downcount(){
+        this.count--
+      }
+    }
+  })
+</script>
+</html>

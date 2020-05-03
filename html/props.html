@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="father">
+    <h2 >{{mess}}</h2>
+    <cpn  v-bind:cmess="mess" v-bind:cname="name"></cpn>
+  </div>
+
+  <template id="son">
+    <div>
+      <ul>
+        <li v-for="item in cname">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+  
+</body>
+<script>
+  const app = new Vue({
+    el: '#father',
+    data: {
+      mess: 'jon',
+      name: ["mary" , "jane" , "fred"]
+    },
+    components: {
+      cpn: {
+        template: "#son",
+        props: {
+          cname: {
+            type: Array,
+            default(){
+              return []
+            },
+            required: true
+          }
+        },
+        data(){
+          return{
+            // cname: ["aa" , "bb" , "cc"]
+          }
+        }
+      }
+    }
+  })
+</script>
+</html>
